@@ -1,0 +1,20 @@
+---
+- name: Enable web services
+  hosts: seoul
+  become: yes
+  tasks:
+    - name: httpd and firewalld installed
+      yum:
+        name:
+          - httpd
+          - firewalld
+        state: latest
+    - name: html page is installed
+      copy:
+        content: "Welcome to the lewis.com cloud service!\n"
+        dest: /var/www/html/index.html
+    - name: firewalld enabled and running
+      service:
+        name: firewalld
+        enabled: true
+        state: started

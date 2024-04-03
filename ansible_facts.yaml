@@ -1,0 +1,37 @@
+# dnf 방식 
+-
+ name: Demonstrate the "in" keyword
+  hosts: all
+  gather_facts: yes
+  vars:
+    supported_distros:
+      - RedHat
+      - Fedora
+      - Rocky
+  tasks:
+    - name: Install httpd using dnf, where supported
+      ansible.builtin.dnf:
+        name: httpd  # httpd로 수정
+        state: present
+      when: ansible_facts['distribution'] in supported_distros
+
+
+# yum 방식
+#
+# # ansible_facts.yaml
+# 
+# - name: Demonstrate the "in" keyword
+#   hosts: all
+#   gather_facts: yes
+#   vars:
+#     supported_distros:
+#       - RedHat
+#       - Fedora
+#       - Rocky  
+#   tasks:
+#     - name: Install httpd using yum, where supported
+#       yum:
+#         name: httpd
+#         state: present
+#       when: ansible_facts['distribution'] in supported_distros         
+# 

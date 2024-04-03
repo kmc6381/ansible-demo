@@ -1,0 +1,7 @@
+---
+- name: This play gathers no facts automatically
+  hosts: webservers
+  gather_facts: no
+  tasks:
+    - name: Manually gather facts
+      setup:

@@ -1,0 +1,6 @@
+- hosts: servera.example.com
+  tasks:
+  - debug:
+      msg: >
+        Hostname is {{ ansible_facts.hostname }} 
+        and IP is {{ ansible_facts.default_ipv4.address }}
